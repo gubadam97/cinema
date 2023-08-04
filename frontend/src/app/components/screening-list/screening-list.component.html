@@ -1,0 +1,26 @@
+<div class="card bg-body-tertiary">
+  <div class="card-body text-center d-flex flex-column">
+    <h5 class="text-center mb-3">Screenings</h5>
+    <hr>
+    <table class="table mb-5">
+      <thead>
+      <tr class="table-success">
+        <th scope="col">Title</th>
+        <th scope="col">Screening date</th>
+        <th scope="col">Total seats</th>
+        <th scope="col">Free seats</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let screening of screenings">
+        <td>{{screening.title}}</td>
+        <td>{{dateFormat(screening.screeningDate)}}</td>
+        <td>{{screening.totalSeats}}</td>
+        <td>{{screening.freeSeats}}</td>
+        <td><img src="{{screening.pictureUrl}}" height="100" alt="picture"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

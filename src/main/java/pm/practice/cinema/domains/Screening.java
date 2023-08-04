@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import pm.practice.cinema.dto.incoming.ScreeningCommand;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,6 +29,9 @@ public class Screening {
 
     @Column
     private String pictureUrl;
+
+    @OneToMany(mappedBy = "movieScreening")
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Screening(ScreeningCommand command) {
         this.title = command.getTitle();

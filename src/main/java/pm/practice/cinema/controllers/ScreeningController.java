@@ -4,18 +4,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pm.practice.cinema.dto.incoming.ScreeningCommand;
+import pm.practice.cinema.dto.outgoing.ScreeningListItem;
 import pm.practice.cinema.services.ScreeningService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/screenings")
 public class ScreeningController {
 
-    private ScreeningService screeningService;
+    private final ScreeningService screeningService;
 
     private static final Logger logger = LoggerFactory.getLogger(ScreeningController.class);
 
@@ -30,5 +30,10 @@ public class ScreeningController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @GetMapping
+    public ResponseEntity<List<ScreeningListItem>> getAllScreenings() {
+        logger.info("Screening page requested.");
+        return new ResponseEntity<>(screeningService.getAllScreenings(), HttpStatus.OK);
+    }
 
 }
