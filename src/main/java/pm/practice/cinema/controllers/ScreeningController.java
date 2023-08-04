@@ -1,6 +1,7 @@
 package pm.practice.cinema.controllers;
 
-import org.springframework.http.HttpEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,8 @@ public class ScreeningController {
 
     private ScreeningService screeningService;
 
+    private static final Logger logger = LoggerFactory.getLogger(ScreeningController.class);
+
     public ScreeningController(ScreeningService screeningService) {
         this.screeningService = screeningService;
     }
@@ -23,6 +26,7 @@ public class ScreeningController {
     @PostMapping
     public ResponseEntity addScreening(@RequestBody ScreeningCommand command) {
         screeningService.addScreening(command);
+        logger.info("New screening added.");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
